@@ -24,200 +24,210 @@ $font-stack: "IBM Plex Sans", sans-serif;
     box-sizing: border-box;
 }
 body{
-    margin: 0 auto;
     background-color: $primary-color;
     font-family: $font-stack;
-}
-nav{
-    width: 100%;
-    margin: 15px;
-    display: flex;
-    justify-content: space-between;
-    color: $prymary-text-color;
-    p{
-        font-size: 3rem;
-        padding-left: 30px;
-    }
-    .icons{
-        display: flex;
-        gap: 15px;
-        margin-right: 30px;
-        @include buttonStyle;
-        button:hover{
-            cursor: pointer;
-        }
-    }
-}
-article{
-    width: auto;
-    height: 686px;
-    margin: 0 45px;
-    color: $prymary-text-color;
-    display: flex;
-    gap: 20px;
-    .impact-section{
-        width: 50%;
-        height: auto;
-        h1{
-            font-size: 6rem;
-        }
-        p{
-            font-size: 2.5rem;
-            margin-bottom: 80px;
-        }
-        button{
-            width: 261px;
-            height: 73px;
-            border: none;
-            border-radius: 35px;
-            font-size: 2.3rem;
-            font-weight: 700;
-            color: white;
-            background-color: #FA9500;
-        }
-        button:hover{
-            cursor: pointer;
-        }
-    }
-    .image-section{
-        width: 50%;
-        height: 100%;
-        img{
-            width: 100%;
-            height: 100%;
-            border-radius: 19px;
-            object-fit: cover;
-        }
-    }
-}
-main{
-    max-width: 1400px;
-    margin: 0 auto;
-}
-section{
-    width: 100%;
-    height: auto;
-    margin: 45px;
-
-    h2{
-        color: $prymary-text-color;
-        font-size: 5rem;
-        font-weight: 500;
-    }
-    .healthcare{
+    header{
         width: 100%;
         height: auto;
-        .card-section{
-            width: auto;
-            height: auto;
-            display: grid;
-            margin: 50px 0;
-            grid-template-columns: repeat(3, 1fr);
-            row-gap: 80px;
-
-            .product-card{
-                display: flex;
-                flex-direction: column;
-                width: 324px;
-                height: 502px;
-                padding: 15px;
-                border-radius: 8px;
-                background-color: $secondary-color;
-                svg{
-                    align-self: self-end;
-                    height: 10%;
-                }
-                svg:hover{
-                    cursor: pointer;
-                }
-                .img-container{
-                    width: 100%;
-                    height: 65%;
-                    padding: 10px 20px 0;
-                    margin-bottom: 30px;
-                    img{
-                        width: 100%;
-                        height: 100%;
-                        border-radius: 7px;
-                    } 
-                }
-                .card-info{
-                    height: 25%;
-                    margin: 0 20px;
-                    color: $prymary-text-color;
-                    h3{
-                        width: 100%;
-                        font-size: 2.5rem;
-                        font-weight: 600;
-                    }
-                    p{  
-                        width: 100%;
-                        font-size: 1.5rem;
-                    }
-                }   
-            }
-                
-                
-        }
-    }
-    .furniture{
-        @extend .healthcare;
-        .card-section{
-            .product-card{
-                background-color: $tertiary-color;
-                svg path{
-                    stroke: currentColor;
-                }
-                svg{
-                    color: white;
-                }
-                .card-info{
-                    color: white;
-                }
-            }
-        }
-    }
-}
-
-.info-section{
-    .about-us{
-        .mission-container{
-            margin: 50px ;
+        nav{
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            color: $prymary-text-color;
             p{
                 font-size: 3rem;
-                font-weight: 500;
-                text-align: center;
-                color: #E86424;
+                padding-left: 30px;
             }
-            .earth,.innovation{
+            .icons{
                 display: flex;
-                gap: 10px;
-                align-items: center;
-                width: 500px;
+                gap: 15px;
+                margin-right: 30px;
+                @include buttonStyle;
+                button:hover{
+                    cursor: pointer;
+                }
             }
-            @include flexCenter(row, space-between, center)
         }
     }
-}
-
-.gallery{
-
-    img{
-        width: 398px;
-        height: 398px;
-        object-fit: cover;
-        border-radius: 16px;
-        margin: 50px 50px 50px 0;
-        &:hover{
-            transform: scale(1.1);
-            transition: transform 0.5s;
-        } 
+    article{
+        width: 100%;
+        height: 686px;
+        max-width: 1200px;
+        padding: 0 45px;
+        color: $prymary-text-color;
+        display: flex;
+        gap: 20px;
+        .impact-section{
+            width: 50%;
+            height: auto;
+            h1{
+                font-size: 6rem;
+            }
+            p{
+                font-size: 2.5rem;
+                margin-bottom: 80px;
+            }
+            button{
+                width: 261px;
+                height: 73px;
+                border: none;
+                border-radius: 35px;
+                font-size: 2.3rem;
+                font-weight: 700;
+                color: white;
+                background-color: #FA9500;
+            }
+            button:hover{
+                cursor: pointer;
+            }
+        }
+        .image-section{
+            width: 50%;
+            height: 100%;
+            img{
+                width: 100%;
+                height: 100%;
+                border-radius: 19px;
+                object-fit: cover;
+            }
+        }
     }
-}
+    main{
+        max-width: 1200px;
+        margin: 0 auto;
+        section{
+            width: 100%;
+            height: auto;
+            padding: 45px;
 
-footer{
-    $background:#FA9500;
-    background-color: $background;
-    width: 100%;
-    height: 250px;
+            h2{
+                color: $prymary-text-color;
+                font-size: 5rem;
+                font-weight: 500;
+            }
+            .healthcare{
+                width: 100%;
+                height: auto;
+                .card-section{
+                    width: 100%;
+                    height: auto;
+                    display: grid;
+                    margin: 50px 0;
+                    grid-template-columns: repeat(3, 1fr);
+                    row-gap: 80px;
+                    column-gap: 40px;
+
+                    .product-card{
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        height: 502px;
+                        padding: 15px;
+                        border-radius: 8px;
+                        background-color: $secondary-color;
+                        svg{
+                            align-self: self-end;
+                            height: 10%;
+                        }
+                        svg:hover{
+                            cursor: pointer;
+                        }
+                        .img-container{
+                            width: 100%;
+                            height: 65%;
+                            padding: 10px 20px 0;
+                            margin-bottom: 30px;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 7px;
+                            } 
+                        }
+                        .card-info{
+                            height: 25%;
+                            margin: 0 20px;
+                            color: $prymary-text-color;
+                            h3{
+                                width: 100%;
+                                font-size: 2.5rem;
+                                font-weight: 600;
+                            }
+                            p{  
+                                width: 100%;
+                                font-size: 1.5rem;
+                            }
+                        }   
+                    }
+                        
+                        
+                }
+            }
+            .furniture{
+                @extend .healthcare;
+                .card-section{
+                    .product-card{
+                        background-color: $tertiary-color;
+                        svg path{
+                            stroke: currentColor;
+                        }
+                        svg{
+                            color: white;
+                        }
+                        .card-info{
+                            color: white;
+                        }
+                    }
+                }
+            }
+        }
+        .info-section{
+            .about-us{
+                .mission-container{
+                    padding: 50px ;
+                    p{
+                        font-size: 3rem;
+                        font-weight: 500;
+                        text-align: center;
+                        color: #E86424;
+                    }
+                    .earth,.innovation{
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                        width: 500px;
+                    }
+                    @include flexCenter(row, space-between, center)
+                }
+            }
+    
+        
+        }
+        .gallery{
+
+            img{
+                width: 298px;
+                height: 298px;
+                object-fit: cover;
+                border-radius: 16px;
+                margin: 50px 50px 50px 0;
+                    &:hover{
+                        transform: scale(1.1);
+                        transition: transform 0.5s;
+                    } 
+            }
+        }
+       
+
+    
+    }
+    footer{
+            background-color:#FA9500;
+            width: 100%;
+            height: 250px;
+        }
+
+    
 }
