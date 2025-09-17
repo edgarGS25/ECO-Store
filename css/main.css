@@ -1,0 +1,200 @@
+* {
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0 auto;
+  background-color: #FFEFE7;
+  font-family: "IBM Plex Sans", sans-serif;
+}
+
+nav {
+  width: 100%;
+  margin: 15px;
+  display: flex;
+  justify-content: space-between;
+  color: #7C6A0A;
+}
+nav p {
+  font-size: 3rem;
+  padding-left: 30px;
+}
+nav .icons {
+  display: flex;
+  gap: 15px;
+  margin-right: 30px;
+}
+nav .icons button {
+  background: none;
+  border: none;
+}
+nav .icons button:hover {
+  cursor: pointer;
+}
+
+article {
+  width: auto;
+  height: 686px;
+  margin: 0 45px;
+  color: #7C6A0A;
+  display: flex;
+  gap: 20px;
+}
+article .impact-section {
+  width: 50%;
+  height: auto;
+}
+article .impact-section h1 {
+  font-size: 6rem;
+}
+article .impact-section p {
+  font-size: 2.5rem;
+  margin-bottom: 80px;
+}
+article .impact-section button {
+  width: 261px;
+  height: 73px;
+  border: none;
+  border-radius: 35px;
+  font-size: 2.3rem;
+  font-weight: 700;
+  color: white;
+  background-color: #FA9500;
+}
+article .impact-section button:hover {
+  cursor: pointer;
+}
+article .image-section {
+  width: 50%;
+  height: 100%;
+}
+article .image-section img {
+  width: 100%;
+  height: 100%;
+  border-radius: 19px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+main {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+section {
+  width: 100%;
+  height: auto;
+  margin: 45px;
+}
+section h2 {
+  color: #7C6A0A;
+  font-size: 5rem;
+  font-weight: 500;
+}
+section .healthcare, section .furniture {
+  width: 100%;
+  height: auto;
+}
+section .healthcare .card-section, section .furniture .card-section {
+  width: auto;
+  height: auto;
+  display: grid;
+  margin: 50px 0;
+  grid-template-columns: repeat(3, 1fr);
+  row-gap: 80px;
+}
+section .healthcare .card-section .product-card, section .furniture .card-section .product-card {
+  display: flex;
+  flex-direction: column;
+  width: 324px;
+  height: 502px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #FFDAC6;
+}
+section .healthcare .card-section .product-card svg, section .furniture .card-section .product-card svg {
+  align-self: self-end;
+  height: 10%;
+}
+section .healthcare .card-section .product-card svg:hover, section .furniture .card-section .product-card svg:hover {
+  cursor: pointer;
+}
+section .healthcare .card-section .product-card .img-container, section .furniture .card-section .product-card .img-container {
+  width: 100%;
+  height: 65%;
+  padding: 10px 20px 0;
+  margin-bottom: 30px;
+}
+section .healthcare .card-section .product-card .img-container img, section .furniture .card-section .product-card .img-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+}
+section .healthcare .card-section .product-card .card-info, section .furniture .card-section .product-card .card-info {
+  height: 25%;
+  margin: 0 20px;
+  color: #7C6A0A;
+}
+section .healthcare .card-section .product-card .card-info h3, section .furniture .card-section .product-card .card-info h3 {
+  width: 100%;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+section .healthcare .card-section .product-card .card-info p, section .furniture .card-section .product-card .card-info p {
+  width: 100%;
+  font-size: 1.5rem;
+}
+section .furniture .card-section .product-card {
+  background-color: #BABD8D;
+}
+section .furniture .card-section .product-card svg path {
+  stroke: currentColor;
+}
+section .furniture .card-section .product-card svg {
+  color: white;
+}
+section .furniture .card-section .product-card .card-info {
+  color: white;
+}
+
+.info-section .about-us .mission-container {
+  margin: 50px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.info-section .about-us .mission-container p {
+  font-size: 3rem;
+  font-weight: 500;
+  text-align: center;
+  color: #E86424;
+}
+.info-section .about-us .mission-container .earth, .info-section .about-us .mission-container .innovation {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: 500px;
+}
+
+.gallery img {
+  width: 398px;
+  height: 398px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 16px;
+  margin: 50px 50px 50px 0;
+}
+.gallery img:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+
+footer {
+  background-color: #FA9500;
+  width: 100%;
+  height: 250px;
+}/*# sourceMappingURL=main.css.map */
