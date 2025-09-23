@@ -83,8 +83,7 @@ body article .image-section img {
   width: 100%;
   height: 100%;
   border-radius: 19px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 body article .image-section img:hover {
   transform: scale(1.05);
@@ -114,8 +113,7 @@ body main section .healthcare .card-section, body main section .furniture .card-
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   row-gap: 80px;
-  -moz-column-gap: 40px;
-       column-gap: 40px;
+  column-gap: 40px;
 }
 body main section .healthcare .card-section .product-card, body main section .furniture .card-section .product-card {
   display: flex;
@@ -176,12 +174,6 @@ body main section .furniture .card-section .product-card svg {
 body main section .furniture .card-section .product-card .card-info {
   color: white;
 }
-body main .info-section .about-us .mission-container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
 body main .info-section .about-us .mission-container p {
   font-size: 3rem;
   font-weight: 500;
@@ -194,6 +186,12 @@ body main .info-section .about-us .mission-container .earth, body main .info-sec
   align-items: center;
   width: 500px;
 }
+body main .info-section .about-us .mission-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
 body main .info-section .gallery .img-container {
   display: flex;
   gap: 32px;
@@ -201,8 +199,7 @@ body main .info-section .gallery .img-container {
 body main .info-section .gallery .img-container img {
   width: 398px;
   height: 398px;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 16px;
 }
 body main .info-section .gallery .img-container img:hover {
@@ -316,4 +313,6 @@ body footer .social-media {
     flex-direction: column;
     gap: 10px;
   }
-}/*# sourceMappingURL=main.css.map */
+}
+
+/*# sourceMappingURL=main.css.map */
