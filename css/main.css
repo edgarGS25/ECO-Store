@@ -34,8 +34,10 @@ body header nav .icons button {
   background: none;
   border: none;
 }
-body header nav .icons button:hover {
+body header nav .icons svg:hover {
   cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.5s;
 }
 body article {
   width: 100%;
@@ -67,6 +69,10 @@ body article .impact-section button {
   background-color: #FA9500;
 }
 body article .impact-section button:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+body article .impact-section button:hover {
   cursor: pointer;
 }
 body article .image-section {
@@ -79,6 +85,10 @@ body article .image-section img {
   border-radius: 19px;
   -o-object-fit: cover;
      object-fit: cover;
+}
+body article .image-section img:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s;
 }
 body main {
   max-width: 1200px;
@@ -122,6 +132,8 @@ body main section .healthcare .card-section .product-card svg, body main section
 }
 body main section .healthcare .card-section .product-card svg:hover, body main section .furniture .card-section .product-card svg:hover {
   cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.5s;
 }
 body main section .healthcare .card-section .product-card .img-container, body main section .furniture .card-section .product-card .img-container {
   width: 100%;
@@ -133,6 +145,10 @@ body main section .healthcare .card-section .product-card .img-container img, bo
   width: 100%;
   height: 100%;
   border-radius: 7px;
+}
+body main section .healthcare .card-section .product-card .img-container img:hover, body main section .furniture .card-section .product-card .img-container img:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
 }
 body main section .healthcare .card-section .product-card .card-info, body main section .furniture .card-section .product-card .card-info {
   height: 25%;
