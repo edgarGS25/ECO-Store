@@ -27,6 +27,7 @@ body{
     background-color: $primary-color;
     font-family: $font-stack;
     header{
+        z-index: 2;
         width: 100%;
         height: auto;
         margin-bottom: 32px;
@@ -43,6 +44,7 @@ body{
             }
             .icons{
                 display: flex;
+                position: relative;
                 gap: 15px;
                 @include buttonStyle;
                 svg:hover{
@@ -50,10 +52,67 @@ body{
                         transform: scale(1.1);
                         transition: transform 0.5s;
                     } 
+                .wishlist-contain{
+                    z-index: 2;
+                    display: none;
+                    flex-direction: column;
+                    gap: 20px;
+                    width: 300px;
+                    padding: 20px;
+                    height: auto;
+                    position: absolute;
+                    top: 36px;
+                    right: 64px;
+                    background-color: white;
+                    border-radius: 8px;
+                    .cart-item{
+                        display: flex;
+                        width: 100%;
+                        height: 100px;
+                        padding: 15px;
+                        border-radius: 8px;
+                        background-color: $secondary-color;
+                        .img-container{
+                            width: 50%;
+                            height: 100%;
+                            padding: 0;
+                            margin-bottom: 30px;
+                            img{
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 7px;
+                                object-fit: cover;
+                                &:hover{
+                                    transform: scale(1.1);
+                                    transition: transform 0.5s;
+                                } 
+                            } 
+                        }
+                        .cart-item-info{
+                            width: 50%;
+                            height: auto;
+                            margin: 0 20px;
+                            color: $prymary-text-color;
+                            h3{
+                                width: 100%;
+                                font-size: 1.2rem;
+                                font-weight: 600;
+                            }
+                            p{  
+                                width: 100%;
+                                font-size: 1rem;
+                            }
+                            button{
+                                font-size: 1rem;
+                            }
+                        }  
+                    }
+                }
             }
         }
     }
     article{
+        z-index: 1;
         width: 100%;
         height: 686px;
         max-width: 1200px;
@@ -154,6 +213,7 @@ body{
                                 width: 100%;
                                 height: 100%;
                                 border-radius: 7px;
+                                object-fit: cover;
                                 &:hover{
                                     transform: scale(1.1);
                                     transition: transform 0.5s;
