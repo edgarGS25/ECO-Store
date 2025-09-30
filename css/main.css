@@ -55,7 +55,7 @@ body header nav .icons .wishlist-contain {
   background-color: white;
   border-radius: 8px;
 }
-body header nav .icons .wishlist-contain .cart-item {
+body header nav .icons .wishlist-contain .Wishlist-item {
   display: flex;
   width: 100%;
   height: 100px;
@@ -63,39 +63,96 @@ body header nav .icons .wishlist-contain .cart-item {
   border-radius: 8px;
   background-color: #FFDAC6;
 }
-body header nav .icons .wishlist-contain .cart-item .img-container {
+body header nav .icons .wishlist-contain .Wishlist-item .img-container {
   width: 50%;
   height: 100%;
   padding: 0;
   margin-bottom: 30px;
 }
-body header nav .icons .wishlist-contain .cart-item .img-container img {
+body header nav .icons .wishlist-contain .Wishlist-item .img-container img {
   width: 100%;
   height: 100%;
   border-radius: 7px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-body header nav .icons .wishlist-contain .cart-item .img-container img:hover {
+body header nav .icons .wishlist-contain .Wishlist-item .img-container img:hover {
   transform: scale(1.1);
   transition: transform 0.5s;
 }
-body header nav .icons .wishlist-contain .cart-item .cart-item-info {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info {
   width: 50%;
   height: auto;
   margin: 0 20px;
   color: #7C6A0A;
 }
-body header nav .icons .wishlist-contain .cart-item .cart-item-info h3 {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info h3 {
   width: 100%;
   font-size: 1.2rem;
   font-weight: 600;
 }
-body header nav .icons .wishlist-contain .cart-item .cart-item-info p {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info p {
   width: 100%;
   font-size: 1rem;
 }
-body header nav .icons .wishlist-contain .cart-item .cart-item-info button {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info button {
+  font-size: 1rem;
+}
+body header nav .icons .cart-contain {
+  z-index: 2;
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  width: 300px;
+  padding: 20px;
+  height: auto;
+  position: absolute;
+  top: 36px;
+  right: 0;
+  background-color: white;
+  border-radius: 8px;
+}
+body header nav .icons .cart-contain .cart-item {
+  display: flex;
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  border-radius: 8px;
+  background-color: #FFDAC6;
+}
+body header nav .icons .cart-contain .cart-item .img-container {
+  width: 50%;
+  height: 100%;
+  padding: 0;
+  margin-bottom: 30px;
+}
+body header nav .icons .cart-contain .cart-item .img-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body header nav .icons .cart-contain .cart-item .img-container img:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+body header nav .icons .cart-contain .cart-item .cart-item-info {
+  width: 50%;
+  height: auto;
+  margin: 0 20px;
+  color: #7C6A0A;
+}
+body header nav .icons .cart-contain .cart-item .cart-item-info h3 {
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+body header nav .icons .cart-contain .cart-item .cart-item-info p {
+  width: 100%;
+  font-size: 1rem;
+}
+body header nav .icons .cart-contain .cart-item .cart-item-info button {
   font-size: 1rem;
 }
 body article {
@@ -197,7 +254,7 @@ body main section .healthcare .card-section .product-card svg:hover, body main s
 }
 body main section .healthcare .card-section .product-card .img-container, body main section .furniture .card-section .product-card .img-container {
   width: 100%;
-  height: 65%;
+  height: 55%;
   padding: 10px 20px 0;
   margin-bottom: 30px;
 }
@@ -225,6 +282,19 @@ body main section .healthcare .card-section .product-card .card-info h3, body ma
 body main section .healthcare .card-section .product-card .card-info p, body main section .furniture .card-section .product-card .card-info p {
   width: 100%;
   font-size: 1.5rem;
+}
+body main section .healthcare .card-section .product-card .card-info .add-to-cart, body main section .furniture .card-section .product-card .card-info .add-to-cart {
+  width: 100%;
+  display: flex;
+  justify-content: right;
+}
+body main section .healthcare .card-section .product-card .card-info .add-to-cart svg, body main section .furniture .card-section .product-card .card-info .add-to-cart svg {
+  height: 10%;
+}
+body main section .healthcare .card-section .product-card .card-info .add-to-cart svg:hover, body main section .furniture .card-section .product-card .card-info .add-to-cart svg:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.5s;
 }
 body main section .furniture .card-section .product-card {
   background-color: #BABD8D;
