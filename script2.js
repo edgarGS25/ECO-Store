@@ -59,7 +59,8 @@ function crearCards() {
     desc.textContent = producto.description || '';
     const price = document.createElement('p');
     price.className = 'product-price';
-    price.textContent = `$${producto.price ?? ''}`;
+    const formattedPrice = producto.price ? producto.price.toFixed(2) : '0.00';
+    price.textContent = `$${formattedPrice}`;
 
     // Botón de carrito (SVG)
     const addToCartWrap = document.createElement('div');
@@ -114,7 +115,7 @@ function crearElementoWishlist(nombre, precio, imagenSrc) {
   const p = document.createElement('p');
   p.textContent = precio;
   const btn = document.createElement('button');
-  btn.textContent = 'Eliminar';
+  btn.textContent = 'x';
   btn.addEventListener('click', () => eliminarElementoWishlist(nombre));
 
   info.appendChild(h3);
