@@ -170,7 +170,7 @@ function crearElementoCarrito(nombre, precio, imagenSrc) {
   const p = document.createElement('p');
   p.textContent = precio;
   const btn = document.createElement('button');
-  btn.textContent = 'Eliminar';
+  btn.textContent = 'x';
   btn.addEventListener('click', () => eliminarElementoCarrito(nombre));
 
   info.appendChild(h3);
