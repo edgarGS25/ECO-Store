@@ -39,10 +39,8 @@ body{
             display: flex;
             justify-content: space-between;
             color: $prymary-text-color;
-            .logo{
-                text-decoration: none;
+            p{
                 font-size: 3rem;
-                color: $prymary-text-color;
             }
             .icons{
                 display: flex;
@@ -58,7 +56,7 @@ body{
                     z-index: 2;
                     display: none;
                     flex-direction: column;
-                    width: 500px;
+                    width: 300px;
                     height: auto;
                     position: absolute;
                     top: 36px;
@@ -74,7 +72,7 @@ body{
                         border-radius: 8px;
                         border-bottom: 1px solid $prymary-text-color;
                         .img-container{
-                            width: 30%;
+                            width: 50%;
                             height: 100%;
                             padding: 0;
                             margin-bottom: 30px;
@@ -105,29 +103,12 @@ body{
                                 width: 100%;
                                 font-size: 1.8rem;
                             }
-                            .add-to-cart{
-                                width: 100px;
-                                height: 50px;
-                                position: absolute;
-                                bottom: 8px;
-                                right: -15px;
-                                margin-top: 6px;
-                                font-size: 1.6rem;
-                                color: $prymary-text-color;
-                                border: 1px solid $prymary-text-color;
-                                border-radius: 8px;
-                                &:hover{
-                                    cursor: pointer;
-                                    background-color: #E86424;
-                                    color: white;
-                                }
-                            }
-                            .delete-item{
+                            button{
                                 width: 30px;
                                 height: 30px;
                                 position: absolute;
                                 bottom: 18px;
-                                right: -70px;
+                                right: -15px;
                                 margin-top: 6px;
                                 font-size: 1.8rem;
                                 color: white;
@@ -142,7 +123,16 @@ body{
                         }  
                     }
                 }
-                
+                .cart-contain{
+                    @extend .wishlist-contain;
+                    right: 0;   
+                    .cart-item{
+                        @extend .Wishlist-item;
+                    }
+                    .cart-item-info{
+                        @extend .Wishlist-item-info;
+                    }
+                }
             }
         }
     }
@@ -197,152 +187,6 @@ body{
             }
         }
     }
-    .cart-main{
-        display: flex;
-        .cart-contain{
-            flex-direction: column;
-            width: 70%;
-            height: auto;        
-            background-color: $secondary-color;
-            border-radius: 8px;
-                    .cart-item{
-                        display: flex;
-                        gap: 1px;
-                        width: 100%;
-                        height: 100px;
-                        padding: 15px;
-                        border-radius: 8px;
-                        border-bottom: 1px solid $prymary-text-color;
-                        .img-container{
-                            width: 20%;
-                            height: 100%;
-                            padding: 0;
-                            margin-bottom: 30px;
-                            img{
-                                width: 100%;
-                                height: 100%;
-                                border-radius: 7px;
-                                object-fit: cover;
-                                &:hover{
-                                    transform: scale(1.1);
-                                    transition: transform 0.5s;
-                                } 
-                            } 
-                        }
-                    }
-                    .cart-item-info{
-                        position: relative;
-                        width: 80%;
-                        height: auto;
-                        margin: 0 20px;
-                        color: $prymary-text-color;
-                            h3{
-                                width: 100%;
-                                font-size: 1.6rem;
-                                font-weight: 600;
-                            }
-                            p{  
-                                margin-top: 12px;
-                                width: 100%;
-                                font-size: 1.8rem;
-                                span{
-                                   font-size: 1.8rem; 
-                                }
-                            }
-                            .counter-container{
-                                display: flex;
-                                width: 100px;
-                                height: 50px;
-                                position: absolute;
-                                bottom: 12px;
-                                right: 90px;
-                                align-items: center;
-                                p{
-                                    width: 30px;
-                                    height: 30px;
-                                    text-align: center;
-                                    place-content: center;
-                                    display: inline-block;
-                                }
-                                button{
-                                    position: static;
-                                    width: 30px;
-                                    height: 30px;
-                                }
-                            }
-                            button{
-                                width: 30px;
-                                height: 30px;
-                                position: absolute;
-                                bottom: 18px;
-                                right: -15px;
-                                margin-top: 6px;
-                                font-size: 1.8rem;
-                                background-color: transparent;
-                                color: white;
-                                border: 3px solid white;
-                                border-radius: 50%;
-                                &:hover{
-                                    cursor: pointer;
-                                    background-color: #E86424;
-                                    transition: background-color 0.5s;
-                                }
-                            }
-                    }
-                }
-        .total-container{
-            width: 30%;
-            height: 190px;
-            margin-left: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            .total{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                h3{
-                    font-size: 2.5rem;
-                    color: $prymary-text-color;
-                }
-                p{
-                    font-size: 2.5rem;
-                    color: $prymary-text-color;
-                }
-            }
-            .items-container{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                h3{
-                    font-size: 2.5rem;
-                    color: $prymary-text-color;
-                }
-                p{
-                    font-size: 2.5rem;
-                    color: $prymary-text-color;
-                }
-            }
-            .pagar-btn{
-                width: 100%;
-                height: 50px;
-                border: none;
-                border-radius: 8px;
-                font-size: 2rem;
-                font-weight: 700;
-                color: white;
-                background-color: #FA9500;
-                &:hover{
-                    cursor: pointer;
-                    transform: scale(1.1);
-                    transition: transform 0.5s;
-                } 
-            }
-        }
-    }
     main{
         max-width: 1200px;
         margin: 0 auto;
@@ -376,7 +220,7 @@ body{
                         padding: 15px;
                         border-radius: 8px;
                         background-color: $secondary-color;
-                        .card-svg{
+                        svg{
                             align-self: self-end;
                             height: 10%;
                             &:hover{
@@ -412,10 +256,7 @@ body{
                             }
                             p{  
                                 width: 100%;
-                                font-size: 2rem; 
-                                .price-number{
-                                   font-size: 2rem; 
-                                }
+                                font-size: 1.5rem;
                             }
                             .product-price{
                                 margin-top: 12px;
