@@ -59,27 +59,21 @@ function crearCards() {
     desc.textContent = producto.description || '';
     const price = document.createElement('p');
     price.className = 'product-price';
+    const priceNumber = document.createElement("span")
+    priceNumber.className = "price-number"
     const formattedPrice = producto.price ? producto.price.toFixed(2) : '0.00';
-    price.textContent = `$${formattedPrice}`;
+    price.textContent = `$`;
+    priceNumber.textContent = formattedPrice
+    price.appendChild(priceNumber)
 
     // Botón de carrito (SVG)
-    const addToCartWrap = document.createElement('div');
-    addToCartWrap.className = 'add-to-cart';
-    const cartBtn = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-    cartBtn.setAttribute('width', '34');
-    cartBtn.setAttribute('height', '34');
-    cartBtn.setAttribute('viewBox', '0 0 24 24');
-    cartBtn.classList.add('add-to-cart-icon');
-    cartBtn.dataset.filled = 'false';
-    cartBtn.innerHTML = '<path d="M3 3H5L5.4 5M5.4 5H21L17 13H7M5.4 5L7 13M7 13L4.707 15.293C4.077 15.923 4.523 17 5.414 17H17M17 17C16.4696 17 15.9609 17.2107 15.5858 17.5858C15.2107 17.9609 15 18.4696 15 19C15 19.5304 15.2107 20.0391 15.5858 20.4142C15.9609 20.7893 16.4696 21 17 21C17.5304 21 18.0391 20.7893 18.4142 20.4142C18.7893 20.0391 19 19.5304 19 19C19 18.4696 18.7893 17.9609 18.4142 17.5858C18.0391 17.2107 17.5304 17 17 17ZM9 19C9 19.5304 8.78929 20.0391 8.41421 20.4142C8.03914 20.7893 7.53043 21 7 21C6.46957 21 5.96086 20.7893 5.58579 20.4142C5.21071 20.0391 5 19.5304 5 19C5 18.4696 5.21071 17.9609 5.58579 17.5858C5.96086 17.2107 6.46957 17 7 17C7.53043 17 8.03914 17.2107 8.41421 17.5858C8.78929 17.9609 9 18.4696 9 19Z" stroke="#7C6A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/ fill="none">';
-
-    addToCartWrap.appendChild(cartBtn);
+    
 
     // Añadir toda la información a la card
     cardInfo.appendChild(h3);
     cardInfo.appendChild(desc);
     cardInfo.appendChild(price);
-    cardInfo.appendChild(addToCartWrap);
+    
 
     card.appendChild(heartBtn);
     card.appendChild(imgContainer);
@@ -113,14 +107,23 @@ function crearElementoWishlist(nombre, precio, imagenSrc) {
   const h3 = document.createElement('h3');
   h3.textContent = nombre;
   const p = document.createElement('p');
-  p.textContent = precio;
-  const btn = document.createElement('button');
-  btn.textContent = 'x';
-  btn.addEventListener('click', () => eliminarElementoWishlist(nombre));
+  p.textContent = `$${precio}`;
+  const addToCart = document.createElement("button")
+  addToCart.className = "add-to-cart"
+  addToCart.textContent = "Agregar al carrito"
+  addToCart.addEventListener('click', () => {
+    crearElementoCarrito(nombre, Number(precio), imagenSrc)
+    addToCart.style.display = "none"
+  })
+  const btnDelete = document.createElement('button');
+  btnDelete.className = "delete-item"
+  btnDelete.textContent = 'x';
+  btnDelete.addEventListener('click', () => eliminarElementoWishlist(nombre));
 
   info.appendChild(h3);
   info.appendChild(p);
-  info.appendChild(btn);
+  info.appendChild(addToCart);
+  info.appendChild(btnDelete);
   item.appendChild(imgC);
   item.appendChild(info);
 
@@ -151,7 +154,12 @@ function eliminarElementoWishlist(nombre) {
 // Función para agregar un producto al carrito
 function crearElementoCarrito(nombre, precio, imagenSrc) {
   if (cartMap.has(nombre)) return;
-  cartMap.set(nombre, { nombre, precio, imagenSrc });
+  cartMap.set(nombre, { nombre, precio, imagenSrc, cantidad: 1 });
+
+   // Guardar en localStorage
+  const cartItems = Array.from(cartMap.values());
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+
 
   const item = document.createElement('div');
   item.className = 'cart-item';
@@ -170,8 +178,6 @@ function crearElementoCarrito(nombre, precio, imagenSrc) {
   const p = document.createElement('p');
   p.textContent = precio;
   const btn = document.createElement('button');
-  btn.textContent = 'x';
-  btn.addEventListener('click', () => eliminarElementoCarrito(nombre));
 
   info.appendChild(h3);
   info.appendChild(p);
@@ -179,29 +185,11 @@ function crearElementoCarrito(nombre, precio, imagenSrc) {
   item.appendChild(imgC);
   item.appendChild(info);
 
-  cartContainer.appendChild(item);
+  // cartContainer.appendChild(item);
 }
 
-// Función para eliminar un producto del carrito
-function eliminarElementoCarrito(nombre) {
-  cartMap.delete(nombre);
 
-  // Eliminar elemento visualmente
-  const items = cartContainer.querySelectorAll('.cart-item');
-  items.forEach(it => {
-    if (it.querySelector('.cart-item-info h3').textContent === nombre) it.remove();
-  });
 
-  // Actualizar estado del ícono de carrito en la card
-  const cartSvgs = document.querySelectorAll('.add-to-cart-icon');
-  cartSvgs.forEach(svg => {
-    const pn = svg.closest('.product-card').querySelector('.product-name')?.textContent;
-    if (pn === nombre) {
-      svg.dataset.filled = 'false';
-      svg.innerHTML = svg.innerHTML.replace('fill="#7C6A0A"', 'fill="none"');
-    }
-  });
-}
 
 // Delegación de eventos para wishlist y carrito en cada card
 if (cardSection) {
@@ -212,7 +200,7 @@ if (cardSection) {
       const filled = heart.dataset.filled === 'true';
       const card = heart.closest('.product-card');
       const name = card.querySelector('.product-name').textContent;
-      const price = card.querySelector('.product-price').textContent;
+      const price = card.querySelector('.price-number').textContent;
       const img = card.querySelector('.img-container img').src;
 
       if (!filled) {
@@ -223,27 +211,6 @@ if (cardSection) {
         heart.dataset.filled = 'false';
         heart.innerHTML = heart.innerHTML.replace('fill="#7C6A0A"', 'fill="none"');
         eliminarElementoWishlist(name);
-      }
-      return;
-    }
-
-    // Manejo del ícono de carrito
-    const cartBtn = e.target.closest('.add-to-cart-icon');
-    if (cartBtn) {
-      const filled = cartBtn.dataset.filled === 'true';
-      const card = cartBtn.closest('.product-card');
-      const name = card.querySelector('.product-name').textContent;
-      const price = card.querySelector('.product-price').textContent;
-      const img = card.querySelector('.img-container img').src;
-
-      if (!filled) {
-        cartBtn.dataset.filled = 'true';
-        cartBtn.innerHTML = cartBtn.innerHTML.replace('fill="none"', 'fill="#7C6A0A"');
-        crearElementoCarrito(name, price, img);
-      } else {
-        cartBtn.dataset.filled = 'false';
-        cartBtn.innerHTML = cartBtn.innerHTML.replace('fill="#7C6A0A"', 'fill="none"');
-        eliminarElementoCarrito(name);
       }
       return;
     }
