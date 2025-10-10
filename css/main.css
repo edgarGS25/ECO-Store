@@ -24,8 +24,10 @@ body header nav {
   justify-content: space-between;
   color: #7C6A0A;
 }
-body header nav p {
+body header nav .logo {
+  text-decoration: none;
   font-size: 3rem;
+  color: #7C6A0A;
 }
 body header nav .icons {
   display: flex;
@@ -41,11 +43,11 @@ body header nav .icons svg:hover {
   transform: scale(1.1);
   transition: transform 0.5s;
 }
-body header nav .icons .wishlist-contain, body header nav .icons .cart-contain {
+body header nav .icons .wishlist-contain {
   z-index: 2;
   display: none;
   flex-direction: column;
-  width: 300px;
+  width: 500px;
   height: auto;
   position: absolute;
   top: 36px;
@@ -53,7 +55,7 @@ body header nav .icons .wishlist-contain, body header nav .icons .cart-contain {
   background-color: #FFDAC6;
   border-radius: 8px;
 }
-body header nav .icons .wishlist-contain .Wishlist-item, body header nav .icons .cart-contain .Wishlist-item, body header nav .icons .cart-contain .cart-item {
+body header nav .icons .wishlist-contain .Wishlist-item {
   display: flex;
   gap: 1px;
   width: 100%;
@@ -62,59 +64,73 @@ body header nav .icons .wishlist-contain .Wishlist-item, body header nav .icons 
   border-radius: 8px;
   border-bottom: 1px solid #7C6A0A;
 }
-body header nav .icons .wishlist-contain .Wishlist-item .img-container, body header nav .icons .cart-contain .Wishlist-item .img-container, body header nav .icons .cart-contain .cart-item .img-container {
-  width: 50%;
+body header nav .icons .wishlist-contain .Wishlist-item .img-container {
+  width: 30%;
   height: 100%;
   padding: 0;
   margin-bottom: 30px;
 }
-body header nav .icons .wishlist-contain .Wishlist-item .img-container img, body header nav .icons .cart-contain .Wishlist-item .img-container img, body header nav .icons .cart-contain .cart-item .img-container img {
+body header nav .icons .wishlist-contain .Wishlist-item .img-container img {
   width: 100%;
   height: 100%;
   border-radius: 7px;
   -o-object-fit: cover;
      object-fit: cover;
 }
-body header nav .icons .wishlist-contain .Wishlist-item .img-container img:hover, body header nav .icons .cart-contain .Wishlist-item .img-container img:hover, body header nav .icons .cart-contain .cart-item .img-container img:hover {
+body header nav .icons .wishlist-contain .Wishlist-item .img-container img:hover {
   transform: scale(1.1);
   transition: transform 0.5s;
 }
-body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info, body header nav .icons .wishlist-contain .Wishlist-item .cart-contain .cart-item-info, body header nav .icons .cart-contain .Wishlist-item .Wishlist-item-info, body header nav .icons .cart-contain .Wishlist-item .cart-item-info, body header nav .icons .cart-contain .cart-item .Wishlist-item-info, body header nav .icons .cart-contain .cart-item .cart-item-info {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info {
   position: relative;
   width: 50%;
   height: auto;
   margin: 0 20px;
   color: #7C6A0A;
 }
-body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info h3, body header nav .icons .wishlist-contain .Wishlist-item .cart-contain .cart-item-info h3, body header nav .icons .cart-contain .Wishlist-item .Wishlist-item-info h3, body header nav .icons .cart-contain .Wishlist-item .cart-item-info h3, body header nav .icons .cart-contain .cart-item .Wishlist-item-info h3, body header nav .icons .cart-contain .cart-item .cart-item-info h3 {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info h3 {
   width: 100%;
   font-size: 1.6rem;
   font-weight: 600;
 }
-body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info p, body header nav .icons .wishlist-contain .Wishlist-item .cart-contain .cart-item-info p, body header nav .icons .cart-contain .Wishlist-item .Wishlist-item-info p, body header nav .icons .cart-contain .Wishlist-item .cart-item-info p, body header nav .icons .cart-contain .cart-item .Wishlist-item-info p, body header nav .icons .cart-contain .cart-item .cart-item-info p {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info p {
   margin-top: 12px;
   width: 100%;
   font-size: 1.8rem;
 }
-body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info button, body header nav .icons .wishlist-contain .Wishlist-item .cart-contain .cart-item-info button, body header nav .icons .cart-contain .Wishlist-item .Wishlist-item-info button, body header nav .icons .cart-contain .Wishlist-item .cart-item-info button, body header nav .icons .cart-contain .cart-item .Wishlist-item-info button, body header nav .icons .cart-contain .cart-item .cart-item-info button {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info .add-to-cart {
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  bottom: 8px;
+  right: -15px;
+  margin-top: 6px;
+  font-size: 1.6rem;
+  color: #7C6A0A;
+  border: 1px solid #7C6A0A;
+  border-radius: 8px;
+}
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info .add-to-cart:hover {
+  cursor: pointer;
+  background-color: #E86424;
+  color: white;
+}
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info .delete-item {
   width: 30px;
   height: 30px;
   position: absolute;
   bottom: 18px;
-  right: -15px;
+  right: -70px;
   margin-top: 6px;
   font-size: 1.8rem;
   color: white;
   border: 1px solid white;
   border-radius: 50%;
 }
-body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info button:hover, body header nav .icons .wishlist-contain .Wishlist-item .cart-contain .cart-item-info button:hover, body header nav .icons .cart-contain .Wishlist-item .Wishlist-item-info button:hover, body header nav .icons .cart-contain .Wishlist-item .cart-item-info button:hover, body header nav .icons .cart-contain .cart-item .Wishlist-item-info button:hover, body header nav .icons .cart-contain .cart-item .cart-item-info button:hover {
+body header nav .icons .wishlist-contain .Wishlist-item .Wishlist-item-info .delete-item:hover {
   cursor: pointer;
   background-color: #E86424;
   transition: background-color 0.5s;
-}
-body header nav .icons .cart-contain {
-  right: 0;
 }
 body article {
   z-index: 1;
@@ -168,6 +184,153 @@ body article .image-section img:hover {
   transform: scale(1.05);
   transition: transform 0.5s;
 }
+body .cart-main {
+  display: flex;
+}
+body .cart-main .cart-contain {
+  flex-direction: column;
+  width: 70%;
+  height: auto;
+  background-color: #FFDAC6;
+  border-radius: 8px;
+}
+body .cart-main .cart-contain .cart-item {
+  display: flex;
+  gap: 1px;
+  width: 100%;
+  height: 100px;
+  padding: 15px;
+  border-radius: 8px;
+  border-bottom: 1px solid #7C6A0A;
+}
+body .cart-main .cart-contain .cart-item .img-container {
+  width: 20%;
+  height: 100%;
+  padding: 0;
+  margin-bottom: 30px;
+}
+body .cart-main .cart-contain .cart-item .img-container img {
+  width: 100%;
+  height: 100%;
+  border-radius: 7px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body .cart-main .cart-contain .cart-item .img-container img:hover {
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
+body .cart-main .cart-contain .cart-item-info {
+  position: relative;
+  width: 80%;
+  height: auto;
+  margin: 0 20px;
+  color: #7C6A0A;
+}
+body .cart-main .cart-contain .cart-item-info h3 {
+  width: 100%;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+body .cart-main .cart-contain .cart-item-info p {
+  margin-top: 12px;
+  width: 100%;
+  font-size: 1.8rem;
+}
+body .cart-main .cart-contain .cart-item-info p span {
+  font-size: 1.8rem;
+}
+body .cart-main .cart-contain .cart-item-info .counter-container {
+  display: flex;
+  width: 100px;
+  height: 50px;
+  position: absolute;
+  bottom: 12px;
+  right: 90px;
+  align-items: center;
+}
+body .cart-main .cart-contain .cart-item-info .counter-container p {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  place-content: center;
+  display: inline-block;
+}
+body .cart-main .cart-contain .cart-item-info .counter-container button {
+  position: static;
+  width: 30px;
+  height: 30px;
+}
+body .cart-main .cart-contain .cart-item-info button {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  bottom: 18px;
+  right: -15px;
+  margin-top: 6px;
+  font-size: 1.8rem;
+  background-color: transparent;
+  color: white;
+  border: 3px solid white;
+  border-radius: 50%;
+}
+body .cart-main .cart-contain .cart-item-info button:hover {
+  cursor: pointer;
+  background-color: #E86424;
+  transition: background-color 0.5s;
+}
+body .cart-main .total-container {
+  width: 30%;
+  height: 190px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  background-color: white;
+  border-radius: 8px;
+  padding: 20px;
+}
+body .cart-main .total-container .total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .cart-main .total-container .total h3 {
+  font-size: 2.5rem;
+  color: #7C6A0A;
+}
+body .cart-main .total-container .total p {
+  font-size: 2.5rem;
+  color: #7C6A0A;
+}
+body .cart-main .total-container .items-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body .cart-main .total-container .items-container h3 {
+  font-size: 2.5rem;
+  color: #7C6A0A;
+}
+body .cart-main .total-container .items-container p {
+  font-size: 2.5rem;
+  color: #7C6A0A;
+}
+body .cart-main .total-container .pagar-btn {
+  width: 100%;
+  height: 50px;
+  border: none;
+  border-radius: 8px;
+  font-size: 2rem;
+  font-weight: 700;
+  color: white;
+  background-color: #FA9500;
+}
+body .cart-main .total-container .pagar-btn:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  transition: transform 0.5s;
+}
 body main {
   max-width: 1200px;
   margin: 0 auto;
@@ -204,11 +367,11 @@ body main section .healthcare .card-section .product-card, body main section .fu
   border-radius: 8px;
   background-color: #FFDAC6;
 }
-body main section .healthcare .card-section .product-card svg, body main section .furniture .card-section .product-card svg {
+body main section .healthcare .card-section .product-card .card-svg, body main section .furniture .card-section .product-card .card-svg {
   align-self: self-end;
   height: 10%;
 }
-body main section .healthcare .card-section .product-card svg:hover, body main section .furniture .card-section .product-card svg:hover {
+body main section .healthcare .card-section .product-card .card-svg:hover, body main section .furniture .card-section .product-card .card-svg:hover {
   cursor: pointer;
   transform: scale(1.1);
   transition: transform 0.5s;
@@ -231,6 +394,7 @@ body main section .healthcare .card-section .product-card .img-container img:hov
   transition: transform 0.5s;
 }
 body main section .healthcare .card-section .product-card .card-info, body main section .furniture .card-section .product-card .card-info {
+  position: relative;
   height: 25%;
   margin: 0 20px;
   color: #7C6A0A;
@@ -242,7 +406,10 @@ body main section .healthcare .card-section .product-card .card-info h3, body ma
 }
 body main section .healthcare .card-section .product-card .card-info p, body main section .furniture .card-section .product-card .card-info p {
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 2rem;
+}
+body main section .healthcare .card-section .product-card .card-info p .price-number, body main section .furniture .card-section .product-card .card-info p .price-number {
+  font-size: 2rem;
 }
 body main section .healthcare .card-section .product-card .card-info .product-price, body main section .furniture .card-section .product-card .card-info .product-price {
   margin-top: 12px;
@@ -250,8 +417,10 @@ body main section .healthcare .card-section .product-card .card-info .product-pr
   font-weight: 700;
 }
 body main section .healthcare .card-section .product-card .card-info .add-to-cart, body main section .furniture .card-section .product-card .card-info .add-to-cart {
-  width: 100%;
-  display: flex;
+  width: 35px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 body main section .healthcare .card-section .product-card .card-info .add-to-cart svg, body main section .furniture .card-section .product-card .card-info .add-to-cart svg {
   height: 10%;
