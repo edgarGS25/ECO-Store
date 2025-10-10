@@ -1,3 +1,5 @@
+
+
 // Selección de elementos principales de la interfaz
 const cardSection = document.querySelector('.card-section');
 const wishlist = document.querySelector('.wishlist');
@@ -17,6 +19,7 @@ async function fetchProducts() {
     const data = await res.json();
     productosCuidadoSalud = data.productsHealth || [];
     crearCards();
+    cargarWishList();
   } catch (e) {
     console.error('Error fetching products', e);
   }
@@ -87,6 +90,23 @@ function crearCards() {
   cardSection.appendChild(frag);
 }
 
+// cargar wishlist desde localStorage al iniciar
+function cargarWishList() {
+  const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+  wishlistItems.forEach(item => {
+    const card = Array.from(document.querySelectorAll('.product-card')).find(card => {
+      const name = card.querySelector('.product-name').textContent;
+      return name === item.nombre;
+    });
+    if (card) {
+      const heart = card.querySelector('.card-svg');
+      heart.dataset.filled = 'true';
+      heart.innerHTML = heart.innerHTML.replace('fill="none"', 'fill="#7C6A0A"');
+      crearElementoWishlist(item.nombre, item.precio, item.imagenSrc);
+    }
+  });
+}
+
 // Función para agregar un producto a la wishlist
 function crearElementoWishlist(nombre, precio, imagenSrc) {
   if (wishlistMap.has(nombre)) return;
@@ -130,9 +150,21 @@ function crearElementoWishlist(nombre, precio, imagenSrc) {
   wishlistContain.appendChild(item);
 }
 
+// Función para agregar un producto al Local Storage
+function agregarAWishlistLocalStorage(nombre, precio, imagenSrc) {
+  const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+  const producto = { nombre, precio, imagenSrc };
+  wishlist.push(producto);
+  localStorage.setItem('wishlist', JSON.stringify(wishlist));
+}
+
 // Función para eliminar un producto de la wishlist
 function eliminarElementoWishlist(nombre) {
   wishlistMap.delete(nombre);
+
+  const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
+  const nuevaWishlist = wishlist.filter(item => item.nombre !== nombre);
+  localStorage.setItem('wishlist', JSON.stringify(nuevaWishlist));
 
   // Eliminar elemento visualmente
   const items = wishlistContain.querySelectorAll('.Wishlist-item');
@@ -207,6 +239,7 @@ if (cardSection) {
         heart.dataset.filled = 'true';
         heart.innerHTML = heart.innerHTML.replace('fill="none"', 'fill="#7C6A0A"');
         crearElementoWishlist(name, price, img);
+        agregarAWishlistLocalStorage(name, price, img);
       } else {
         heart.dataset.filled = 'false';
         heart.innerHTML = heart.innerHTML.replace('fill="#7C6A0A"', 'fill="none"');
