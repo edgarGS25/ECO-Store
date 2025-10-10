@@ -394,7 +394,6 @@ body main section .healthcare .card-section .product-card .img-container img:hov
   transition: transform 0.5s;
 }
 body main section .healthcare .card-section .product-card .card-info, body main section .furniture .card-section .product-card .card-info {
-  position: relative;
   height: 25%;
   margin: 0 20px;
   color: #7C6A0A;
@@ -417,10 +416,8 @@ body main section .healthcare .card-section .product-card .card-info .product-pr
   font-weight: 700;
 }
 body main section .healthcare .card-section .product-card .card-info .add-to-cart, body main section .furniture .card-section .product-card .card-info .add-to-cart {
-  width: 35px;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  display: flex;
 }
 body main section .healthcare .card-section .product-card .card-info .add-to-cart svg, body main section .furniture .card-section .product-card .card-info .add-to-cart svg {
   height: 10%;

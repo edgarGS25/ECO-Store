@@ -402,7 +402,6 @@ body{
                             } 
                         }
                         .card-info{
-                            position: relative;
                             height: 25%;
                             margin: 0 20px;
                             color: $prymary-text-color;
@@ -424,10 +423,9 @@ body{
                                 font-weight: 700;
                             }
                             .add-to-cart{
-                                width: 35px;
-                                position: absolute;
-                                right: 0;
-                                bottom: 0;
+                                width: 100%;
+                                display: flex;
+                                justify-content: right;
                                 svg{
                                     height: 10%;
                                     &:hover{
