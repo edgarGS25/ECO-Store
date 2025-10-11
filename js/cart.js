@@ -1,4 +1,4 @@
-import { crearContador, actualizarTotal } from "./contador.js"
+import { crearContador, actualizarTotal } from "../Modules/contador.js"
 const cartContain = document.querySelector(".cart-contain")
 
 

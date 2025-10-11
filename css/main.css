@@ -186,6 +186,10 @@ body article .image-section img:hover {
 }
 body .cart-main {
   display: flex;
+  width: 100%;
+  min-height: 500px;
+  height: auto;
+  margin-bottom: 20px;
 }
 body .cart-main .cart-contain {
   flex-direction: column;
