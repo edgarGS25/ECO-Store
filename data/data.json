@@ -1,0 +1,46 @@
+{
+    "productsHealth": [
+        {
+            "id": 1,
+            "image": "assets/img/products/toothbrush.jpg",
+            "name": "Cepillo de bambú",
+            "description": "Paquete de 2 unidades hecho 100% de materiales ecológicos",
+            "price": 7.00
+        },
+        {
+            "id": 2,
+            "image": "assets/img/products/hand-cream.jpeg",
+            "name": "Crema de manos",
+            "description": "Crema hidratante con eucalipto ayuda al cuidado de la piel.",
+            "price": 10.00
+        },
+        {
+            "id": 3,
+            "image": "assets/img/products/serum.jpg",
+            "name": "Serum hidratante",
+            "description": "Sérum hecho a base de extractos naturales y ácido hialurónico.",
+            "price": 10.00
+        },
+        {
+            "id": 4,
+            "image": "assets/img/products/organic-kit.jpg",
+            "name": "Kit de viaje",
+            "description": "Incluye peine y cepillo de bambú, jabón orgánico de eucalipto y shampoo tamaño de viaje.",
+            "price": 15.00
+        },
+        {
+            "id": 5,
+            "image": "assets/img/products/organic-soap.jpg",
+            "name": "Set de jabones",
+            "description": "Paquete de 2 unidades jabón de carbón activado con coco.",
+            "price": 150.00
+        },
+        {
+            "id": 6,
+            "image": "assets/img/products/guasha-kit.jpg",
+            "name": "Kit de skincare",
+            "description": "Incluye 2 rodillos y una gua sha.",
+            "price": 250.00
+        }
+    ]
+}

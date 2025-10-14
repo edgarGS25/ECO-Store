@@ -15,7 +15,7 @@ const cartMap = new Map();
 // Función para obtener los productos desde el archivo JSON
 async function fetchProducts() {
   try {
-    const res = await fetch('data.json');
+    const res = await fetch('data/data.json');
     const data = await res.json();
     productosCuidadoSalud = data.productsHealth || [];
     crearCards();

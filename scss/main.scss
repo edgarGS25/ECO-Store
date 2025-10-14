@@ -1,8 +1,6 @@
-$primary-color: #FFEFE7;
-$secondary-color: #FFDAC6;
-$tertiary-color:#BABD8D;
-$prymary-text-color: #7C6A0A;
-$font-stack: "IBM Plex Sans", sans-serif;
+@use "cart.scss";
+@use "variables.scss" as variables;
+
 
 @mixin flexCenter($direction, $content, $aling){
     display: flex;
@@ -24,8 +22,8 @@ $font-stack: "IBM Plex Sans", sans-serif;
     box-sizing: border-box;
 }
 body{
-    background-color: $primary-color;
-    font-family: $font-stack;
+    background-color: variables.$primary-color;
+    font-family: variables.$font-stack;
     header{
         z-index: 2;
         width: 100%;
@@ -38,11 +36,11 @@ body{
             padding: 15px 0;
             display: flex;
             justify-content: space-between;
-            color: $prymary-text-color;
+            color: variables.$prymary-text-color;
             .logo{
                 text-decoration: none;
                 font-size: 3rem;
-                color: $prymary-text-color;
+                color: variables.$prymary-text-color;
             }
             .icons{
                 display: flex;
@@ -63,7 +61,7 @@ body{
                     position: absolute;
                     top: 36px;
                     right: 69px;
-                    background-color: $secondary-color;
+                    background-color: variables.$secondary-color;
                     border-radius: 8px;
                     .Wishlist-item{
                         display: flex;
@@ -72,7 +70,7 @@ body{
                         height: 100px;
                         padding: 15px;
                         border-radius: 8px;
-                        border-bottom: 1px solid $prymary-text-color;
+                        border-bottom: 1px solid variables.$prymary-text-color;
                         .img-container{
                             width: 30%;
                             height: 100%;
@@ -94,7 +92,7 @@ body{
                             width: 50%;
                             height: auto;
                             margin: 0 20px;
-                            color: $prymary-text-color;
+                            color: variables.$prymary-text-color;
                             h3{
                                 width: 100%;
                                 font-size: 1.6rem;
@@ -113,8 +111,8 @@ body{
                                 right: -15px;
                                 margin-top: 6px;
                                 font-size: 1.6rem;
-                                color: $prymary-text-color;
-                                border: 1px solid $prymary-text-color;
+                                color: variables.$prymary-text-color;
+                                border: 1px solid variables.$prymary-text-color;
                                 border-radius: 8px;
                                 &:hover{
                                     cursor: pointer;
@@ -151,7 +149,7 @@ body{
         width: 100%;
         height: 686px;
         max-width: 1200px;
-        color: $prymary-text-color;
+        color: variables.$prymary-text-color;
         display: flex;
         gap: 20px;
         .impact-section{
@@ -197,156 +195,7 @@ body{
             }
         }
     }
-    .cart-main{
-        display: flex;
-        width: 100%;
-        min-height: 500px;
-        height: auto;
-        margin-bottom: 20px;
-        .cart-contain{
-            flex-direction: column;
-            width: 70%;
-            height: auto;        
-            background-color: $secondary-color;
-            border-radius: 8px;
-                    .cart-item{
-                        display: flex;
-                        gap: 1px;
-                        width: 100%;
-                        height: 100px;
-                        padding: 15px;
-                        border-radius: 8px;
-                        border-bottom: 1px solid $prymary-text-color;
-                        .img-container{
-                            width: 20%;
-                            height: 100%;
-                            padding: 0;
-                            margin-bottom: 30px;
-                            img{
-                                width: 100%;
-                                height: 100%;
-                                border-radius: 7px;
-                                object-fit: cover;
-                                &:hover{
-                                    transform: scale(1.1);
-                                    transition: transform 0.5s;
-                                } 
-                            } 
-                        }
-                    }
-                    .cart-item-info{
-                        position: relative;
-                        width: 80%;
-                        height: auto;
-                        margin: 0 20px;
-                        color: $prymary-text-color;
-                            h3{
-                                width: 100%;
-                                font-size: 1.6rem;
-                                font-weight: 600;
-                            }
-                            p{  
-                                margin-top: 12px;
-                                width: 100%;
-                                font-size: 1.8rem;
-                                span{
-                                   font-size: 1.8rem; 
-                                }
-                            }
-                            .counter-container{
-                                display: flex;
-                                width: 100px;
-                                height: 50px;
-                                position: absolute;
-                                bottom: 12px;
-                                right: 90px;
-                                align-items: center;
-                                p{
-                                    width: 30px;
-                                    height: 30px;
-                                    text-align: center;
-                                    place-content: center;
-                                    display: inline-block;
-                                }
-                                button{
-                                    position: static;
-                                    width: 30px;
-                                    height: 30px;
-                                }
-                            }
-                            button{
-                                width: 30px;
-                                height: 30px;
-                                position: absolute;
-                                bottom: 18px;
-                                right: -15px;
-                                margin-top: 6px;
-                                font-size: 1.8rem;
-                                background-color: transparent;
-                                color: white;
-                                border: 3px solid white;
-                                border-radius: 50%;
-                                &:hover{
-                                    cursor: pointer;
-                                    background-color: #E86424;
-                                    transition: background-color 0.5s;
-                                }
-                            }
-                    }
-                }
-        .total-container{
-            width: 30%;
-            height: 190px;
-            margin-left: 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            background-color: white;
-            border-radius: 8px;
-            padding: 20px;
-            .total{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                h3{
-                    font-size: 2.5rem;
-                    color: $prymary-text-color;
-                }
-                p{
-                    font-size: 2.5rem;
-                    color: $prymary-text-color;
-                }
-            }
-            .items-container{
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                h3{
-                    font-size: 2.5rem;
-                    color: $prymary-text-color;
-                }
-                p{
-                    font-size: 2.5rem;
-                    color: $prymary-text-color;
-                }
-            }
-            .pagar-btn{
-                width: 100%;
-                height: 50px;
-                border: none;
-                border-radius: 8px;
-                font-size: 2rem;
-                font-weight: 700;
-                color: white;
-                background-color: #FA9500;
-                &:hover{
-                    cursor: pointer;
-                    transform: scale(1.1);
-                    transition: transform 0.5s;
-                } 
-            }
-        }
-    }
+    
     main{
         max-width: 1200px;
         margin: 0 auto;
@@ -356,7 +205,7 @@ body{
             // padding: 45px;
 
             h2{
-                color: $prymary-text-color;
+                color: variables.$prymary-text-color;
                 font-size: 5rem;
                 font-weight: 500;
                 margin: 32px 0;
@@ -379,7 +228,7 @@ body{
                         height: 502px;
                         padding: 15px;
                         border-radius: 8px;
-                        background-color: $secondary-color;
+                        background-color: variables.$secondary-color;
                         .card-svg{
                             align-self: self-end;
                             height: 10%;
@@ -409,7 +258,7 @@ body{
                             position: relative;
                             height: 25%;
                             margin: 0 20px;
-                            color: $prymary-text-color;
+                            color: variables.$prymary-text-color;
                             h3{
                                 width: 100%;
                                 font-size: 2.5rem;
@@ -452,7 +301,7 @@ body{
                 @extend .healthcare;
                 .card-section{
                     .product-card{
-                        background-color: $tertiary-color;
+                        background-color: variables.$tertiary-color;
                         svg path{
                             stroke: currentColor;
                         }

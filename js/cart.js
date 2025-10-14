@@ -1,5 +1,9 @@
+
 import { crearContador, actualizarTotal } from "../Modules/contador.js"
 const cartContain = document.querySelector(".cart-contain")
+
+
+// Función para cargar los productos del carrito desde localStorage
 
 
 function cargarItems(){
@@ -57,5 +61,4 @@ function eliminarElementoCarrito(nombre) {
     });
     actualizarTotal();
 }
-
 cargarItems()
