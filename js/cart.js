@@ -6,7 +6,7 @@ const cartContain = document.querySelector(".cart-contain")
 // Función para cargar los productos del carrito desde localStorage
 
 
-function cargarItems(){
+export function cargarItemsCarrito(){
      const cartItemsLocalStorage = JSON.parse(localStorage.getItem('cart')) || []; // Obtener productos o un array vacío
 
      cartItemsLocalStorage.forEach(item => {
@@ -46,19 +46,46 @@ function cargarItems(){
         cartContain.appendChild(cartItem)
      })
      actualizarTotal()
+
+     // Función para eliminar un producto del carrito
+     function eliminarElementoCarrito(nombre) {
+        let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+        cartItems = cartItems.filter(item => item.nombre !== nombre); // Filtrar el producto eliminado
+        localStorage.setItem('cart', JSON.stringify(cartItems)); // Actualizar localStorage
+        // Eliminar elemento visualmente
+        const items = cartContain.querySelectorAll('.cart-item');
+        items.forEach(it => {
+            if (it.querySelector('.cart-item-info h3').textContent === nombre) it.remove();
+        });
+        actualizarTotal();
+    }
 }
 
-
-// Función para eliminar un producto del carrito
-function eliminarElementoCarrito(nombre) {
-    let cartItems = JSON.parse(localStorage.getItem('cart')) || [];
-    cartItems = cartItems.filter(item => item.nombre !== nombre); // Filtrar el producto eliminado
-    localStorage.setItem('cart', JSON.stringify(cartItems)); // Actualizar localStorage
-    // Eliminar elemento visualmente
-    const items = cartContain.querySelectorAll('.cart-item');
-    items.forEach(it => {
-        if (it.querySelector('.cart-item-info h3').textContent === nombre) it.remove();
+// Funcion para mostrar elemeto agregado recientemente al carrito
+export function actualizarElementoCarrito(nombre, precio, imagenSrc) {
+   const cartMap = new Map();
+   const cartItemsLocalStorage = JSON.parse(localStorage.getItem('cart')) || [];
+   
+   // Llenar el mapa con los elementos actuales del carrito
+   cartItemsLocalStorage.forEach(item => {
+     cartMap.set(item.nombre, item);
     });
-    actualizarTotal();
+
+   // Si el producto ya existe, incrementar la cantidad
+   if (cartMap.has(nombre)) {
+     const existingItem = cartMap.get(nombre);
+     existingItem.cantidad = (existingItem.cantidad || 1) + 1; // Incrementar cantidad
+     cartMap.set(nombre, existingItem);
+   } else {
+     // Si no existe, agregarlo con cantidad 1
+     cartMap.set(nombre, { nombre, precio, imagenSrc, cantidad: 1 });
+   }
+
+   // Convertir el mapa de nuevo a un array y guardarlo en localStorage
+   const updatedCartItems = Array.from(cartMap.values());
+   localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+
+   // Limpiar el contenedor del carrito y recargar los elementos
+   cartContain.innerHTML = '';
+   cargarItemsCarrito();
 }
-cargarItems()

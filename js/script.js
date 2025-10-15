@@ -1,4 +1,4 @@
-
+import { cargarItemsCarrito, actualizarElementoCarrito } from './cart.js'; 
 
 // Selección de elementos principales de la interfaz
 const cardSection = document.querySelector('.card-section');
@@ -20,6 +20,7 @@ async function fetchProducts() {
     productosCuidadoSalud = data.productsHealth || [];
     crearCards();
     cargarWishList();
+    cargarItemsCarrito();
   } catch (e) {
     console.error('Error fetching products', e);
   }
@@ -33,6 +34,7 @@ function crearCards() {
   productosCuidadoSalud.forEach(producto => {
     // Contenedor de cada card
     const card = document.createElement('div');
+    
     card.className = 'product-card';
 
     // Botón SVG para wishlist (corazón)
@@ -45,7 +47,8 @@ function crearCards() {
     heartBtn.innerHTML = '<path d="M3.34255 7.7779C3.5687 7.23194 3.90017 6.73586 4.31804 6.31799C4.7359 5.90012 5.23198 5.56865 5.77795 5.3425C6.32392 5.11635 6.90909 4.99995 7.50004 4.99995C8.09099 4.99995 8.67616 5.11635 9.22213 5.3425C9.7681 5.56865 10.2642 5.90012 10.682 6.31799L12 7.63599L13.318 6.31799C14.162 5.47407 15.3066 4.99997 16.5 4.99997C17.6935 4.99997 18.8381 5.47407 19.682 6.31799C20.526 7.16191 21.0001 8.30651 21.0001 9.49999C21.0001 10.6935 20.526 11.8381 19.682 12.682L12 20.364L4.31804 12.682C3.90017 12.2641 3.5687 11.7681 3.34255 11.2221C3.1164 10.6761 3 10.0909 3 9.49999C3 8.90904 3.1164 8.32387 3.34255 7.7779Z" stroke="#7C6A0A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>';
 
     // Imagen del producto
-    const imgContainer = document.createElement('div');
+    const imgContainer = document.createElement('a');
+    imgContainer.href = "product.html" || '#';
     imgContainer.className = 'img-container';
     const img = document.createElement('img');
     img.src = producto.image || '';
@@ -69,8 +72,10 @@ function crearCards() {
     priceNumber.textContent = formattedPrice
     price.appendChild(priceNumber)
 
-    // Botón de carrito (SVG)
-    
+    // **Evento para guardar los datos del producto al hacer clic**
+    imgContainer.addEventListener('click', () => {
+        guardarProductoSeleccionado(producto);
+    });
 
     // Añadir toda la información a la card
     cardInfo.appendChild(h3);
@@ -90,6 +95,58 @@ function crearCards() {
   cardSection.appendChild(frag);
 }
 
+function guardarProductoSeleccionado(producto) {
+  const productData = JSON.parse(localStorage.getItem('selectedProduct'));
+      if(productData.inCart === true){
+        crearElementoCarrito(productData.name, Number(productData.price), productData.image);
+      }
+      const productDataNew = {
+        name: producto.name,
+        description: producto.description,
+        price: producto.price,
+        image: producto.image,
+      };
+      localStorage.setItem('selectedProduct', JSON.stringify(productDataNew));
+    }
+
+document.addEventListener('DOMContentLoaded', () => {
+                // Recuperar los datos del producto desde localStorage
+                const productData = JSON.parse(localStorage.getItem('selectedProduct'));
+
+                if (productData) {
+                // Seleccionar los elementos donde se mostrarán los datos
+                const productImage = document.querySelector('.product-image');
+                const productName = document.querySelector('.product-name');
+                const productDescription = document.querySelector('.product-description');
+                const productPrice = document.querySelector('.product-price');
+                const addToCartButton = document.querySelector('.add-to-cart');
+                
+                 // Verificar si el producto ya está en el carrito
+                  if (productData.inCart === true) {
+                    addToCartButton.textContent = 'Ya en el carrito';
+                    addToCartButton.disabled = true;
+                  } else {
+                    addToCartButton.textContent = 'Agregar al carrito';
+                    addToCartButton.disabled = false;
+                  }
+
+
+                // Evento para agregar al carrito desde la página de producto
+                addToCartButton.addEventListener('click', () => {
+                    crearElementoCarrito(productData.name, Number(productData.price), productData.image);
+                    addToCartButton.textContent = 'Ya en el carrito';
+                    addToCartButton.disabled = true;
+                });
+
+                // Asignar los datos al DOM
+                productImage.src = productData.image || '';
+                productImage.alt = productData.name || 'Producto';
+                productName.textContent = productData.name || 'Nombre del producto';
+                productDescription.textContent = productData.description || 'Descripción del producto';
+                productPrice.textContent = `$${productData.price ? productData.price.toFixed(2) : '0.00'}`;
+                }
+            });
+
 // cargar wishlist desde localStorage al iniciar
 function cargarWishList() {
   const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
@@ -98,11 +155,11 @@ function cargarWishList() {
       const name = card.querySelector('.product-name').textContent;
       return name === item.nombre;
     });
+    crearElementoWishlist(item.nombre, item.precio, item.imagenSrc);
     if (card) {
       const heart = card.querySelector('.card-svg');
       heart.dataset.filled = 'true';
       heart.innerHTML = heart.innerHTML.replace('fill="none"', 'fill="#7C6A0A"');
-      crearElementoWishlist(item.nombre, item.precio, item.imagenSrc);
     }
   });
 }
@@ -115,8 +172,17 @@ function crearElementoWishlist(nombre, precio, imagenSrc) {
   const item = document.createElement('div');
   item.className = 'Wishlist-item';
 
-  const imgC = document.createElement('div');
+  const imgC = document.createElement('a');
+  imgC.href = "product.html" || '#';
   imgC.className = 'img-container';
+  imgC.addEventListener('click', () => {
+    productosCuidadoSalud.forEach(producto => {
+      if (producto.name === nombre) {
+        guardarProductoSeleccionado(producto);
+      }
+  });
+  });
+
   const img = document.createElement('img');
   img.src = imagenSrc;
   img.alt = nombre;
@@ -128,13 +194,7 @@ function crearElementoWishlist(nombre, precio, imagenSrc) {
   h3.textContent = nombre;
   const p = document.createElement('p');
   p.textContent = `$${precio}`;
-  const addToCart = document.createElement("button")
-  addToCart.className = "add-to-cart"
-  addToCart.textContent = "Agregar al carrito"
-  addToCart.addEventListener('click', () => {
-    crearElementoCarrito(nombre, Number(precio), imagenSrc)
-    addToCart.style.display = "none"
-  })
+  
   const btnDelete = document.createElement('button');
   btnDelete.className = "delete-item"
   btnDelete.textContent = 'x';
@@ -142,7 +202,7 @@ function crearElementoWishlist(nombre, precio, imagenSrc) {
 
   info.appendChild(h3);
   info.appendChild(p);
-  info.appendChild(addToCart);
+  
   info.appendChild(btnDelete);
   item.appendChild(imgC);
   item.appendChild(info);
@@ -157,6 +217,7 @@ function agregarAWishlistLocalStorage(nombre, precio, imagenSrc) {
   wishlist.push(producto);
   localStorage.setItem('wishlist', JSON.stringify(wishlist));
 }
+
 
 // Función para eliminar un producto de la wishlist
 function eliminarElementoWishlist(nombre) {
@@ -185,39 +246,23 @@ function eliminarElementoWishlist(nombre) {
 
 // Función para agregar un producto al carrito
 function crearElementoCarrito(nombre, precio, imagenSrc) {
-  if (cartMap.has(nombre)) return;
-  cartMap.set(nombre, { nombre, precio, imagenSrc, cantidad: 1 });
+  // Verificar si el producto ya está en el carrito
+  const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+  const existingProduct = cartItems.find(item => item.nombre === nombre);
 
-   // Guardar en localStorage
-  const cartItems = Array.from(cartMap.values());
+  if (existingProduct) {
+    // Si el producto ya existe, incrementa su cantidad
+    existingProduct.cantidad += 1;
+  } else {
+    // Si no existe, agrégalo como un nuevo producto
+    cartItems.push({ nombre, precio, imagenSrc, cantidad: 1 });
+  }
+
+  // Guardar el carrito actualizado en localStorage
   localStorage.setItem('cart', JSON.stringify(cartItems));
 
-
-  const item = document.createElement('div');
-  item.className = 'cart-item';
-
-  const imgC = document.createElement('div');
-  imgC.className = 'img-container';
-  const img = document.createElement('img');
-  img.src = imagenSrc;
-  img.alt = nombre;
-  imgC.appendChild(img);
-
-  const info = document.createElement('div');
-  info.className = 'cart-item-info';
-  const h3 = document.createElement('h3');
-  h3.textContent = nombre;
-  const p = document.createElement('p');
-  p.textContent = precio;
-  const btn = document.createElement('button');
-
-  info.appendChild(h3);
-  info.appendChild(p);
-  info.appendChild(btn);
-  item.appendChild(imgC);
-  item.appendChild(info);
-
-  // cartContainer.appendChild(item);
+  // Actualizar el DOM del carrito
+  cargarItemsCarrito();
 }
 
 
