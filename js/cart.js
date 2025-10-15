@@ -89,3 +89,5 @@ export function actualizarElementoCarrito(nombre, precio, imagenSrc) {
    cartContain.innerHTML = '';
    cargarItemsCarrito();
 }
+
+cargarItemsCarrito();

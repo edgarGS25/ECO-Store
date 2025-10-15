@@ -1,16 +1,15 @@
-import { cargarItemsCarrito, actualizarElementoCarrito } from './cart.js'; 
+
 
 // Selección de elementos principales de la interfaz
 const cardSection = document.querySelector('.card-section');
 const wishlist = document.querySelector('.wishlist');
-const wishlistContain = document.querySelector('.wishlist-contain');
 const cartIcon = document.querySelector('.cart');
 const cartContainer = document.querySelector('.cart-contain');
 
 // Variables de estado para productos, wishlist y carrito
 let productosCuidadoSalud = [];
-const wishlistMap = new Map();
-const cartMap = new Map();
+// const wishlistMap = new Map();
+// const cartMap = new Map();
 
 // Función para obtener los productos desde el archivo JSON
 async function fetchProducts() {
@@ -19,8 +18,6 @@ async function fetchProducts() {
     const data = await res.json();
     productosCuidadoSalud = data.productsHealth || [];
     crearCards();
-    cargarWishList();
-    cargarItemsCarrito();
   } catch (e) {
     console.error('Error fetching products', e);
   }
@@ -96,10 +93,6 @@ function crearCards() {
 }
 
 function guardarProductoSeleccionado(producto) {
-  const productData = JSON.parse(localStorage.getItem('selectedProduct'));
-      if(productData.inCart === true){
-        crearElementoCarrito(productData.name, Number(productData.price), productData.image);
-      }
       const productDataNew = {
         name: producto.name,
         description: producto.description,
@@ -109,143 +102,23 @@ function guardarProductoSeleccionado(producto) {
       localStorage.setItem('selectedProduct', JSON.stringify(productDataNew));
     }
 
-document.addEventListener('DOMContentLoaded', () => {
-                // Recuperar los datos del producto desde localStorage
-                const productData = JSON.parse(localStorage.getItem('selectedProduct'));
-
-                if (productData) {
-                // Seleccionar los elementos donde se mostrarán los datos
-                const productImage = document.querySelector('.product-image');
-                const productName = document.querySelector('.product-name');
-                const productDescription = document.querySelector('.product-description');
-                const productPrice = document.querySelector('.product-price');
-                const addToCartButton = document.querySelector('.add-to-cart');
-                
-                 // Verificar si el producto ya está en el carrito
-                  if (productData.inCart === true) {
-                    addToCartButton.textContent = 'Ya en el carrito';
-                    addToCartButton.disabled = true;
-                  } else {
-                    addToCartButton.textContent = 'Agregar al carrito';
-                    addToCartButton.disabled = false;
-                  }
-
-
-                // Evento para agregar al carrito desde la página de producto
-                addToCartButton.addEventListener('click', () => {
-                    crearElementoCarrito(productData.name, Number(productData.price), productData.image);
-                    addToCartButton.textContent = 'Ya en el carrito';
-                    addToCartButton.disabled = true;
-                });
-
-                // Asignar los datos al DOM
-                productImage.src = productData.image || '';
-                productImage.alt = productData.name || 'Producto';
-                productName.textContent = productData.name || 'Nombre del producto';
-                productDescription.textContent = productData.description || 'Descripción del producto';
-                productPrice.textContent = `$${productData.price ? productData.price.toFixed(2) : '0.00'}`;
-                }
-            });
-
-// cargar wishlist desde localStorage al iniciar
-function cargarWishList() {
-  const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
-  wishlistItems.forEach(item => {
-    const card = Array.from(document.querySelectorAll('.product-card')).find(card => {
-      const name = card.querySelector('.product-name').textContent;
-      return name === item.nombre;
-    });
-    crearElementoWishlist(item.nombre, item.precio, item.imagenSrc);
-    if (card) {
-      const heart = card.querySelector('.card-svg');
-      heart.dataset.filled = 'true';
-      heart.innerHTML = heart.innerHTML.replace('fill="none"', 'fill="#7C6A0A"');
-    }
-  });
-}
-
-// Función para agregar un producto a la wishlist
-function crearElementoWishlist(nombre, precio, imagenSrc) {
-  if (wishlistMap.has(nombre)) return;
-  wishlistMap.set(nombre, { nombre, precio, imagenSrc });
-
-  const item = document.createElement('div');
-  item.className = 'Wishlist-item';
-
-  const imgC = document.createElement('a');
-  imgC.href = "product.html" || '#';
-  imgC.className = 'img-container';
-  imgC.addEventListener('click', () => {
-    productosCuidadoSalud.forEach(producto => {
-      if (producto.name === nombre) {
-        guardarProductoSeleccionado(producto);
-      }
-  });
-  });
-
-  const img = document.createElement('img');
-  img.src = imagenSrc;
-  img.alt = nombre;
-  imgC.appendChild(img);
-
-  const info = document.createElement('div');
-  info.className = 'Wishlist-item-info';
-  const h3 = document.createElement('h3');
-  h3.textContent = nombre;
-  const p = document.createElement('p');
-  p.textContent = `$${precio}`;
-  
-  const btnDelete = document.createElement('button');
-  btnDelete.className = "delete-item"
-  btnDelete.textContent = 'x';
-  btnDelete.addEventListener('click', () => eliminarElementoWishlist(nombre));
-
-  info.appendChild(h3);
-  info.appendChild(p);
-  
-  info.appendChild(btnDelete);
-  item.appendChild(imgC);
-  item.appendChild(info);
-
-  wishlistContain.appendChild(item);
-}
 
 // Función para agregar un producto al Local Storage
 function agregarAWishlistLocalStorage(nombre, precio, imagenSrc) {
-  const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-  const producto = { nombre, precio, imagenSrc };
-  wishlist.push(producto);
-  localStorage.setItem('wishlist', JSON.stringify(wishlist));
-}
+  const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
+    const existingProduct = wishlistItems.find(item => item.nombre === nombre);
 
-
-// Función para eliminar un producto de la wishlist
-function eliminarElementoWishlist(nombre) {
-  wishlistMap.delete(nombre);
-
-  const wishlist = JSON.parse(localStorage.getItem('wishlist')) || [];
-  const nuevaWishlist = wishlist.filter(item => item.nombre !== nombre);
-  localStorage.setItem('wishlist', JSON.stringify(nuevaWishlist));
-
-  // Eliminar elemento visualmente
-  const items = wishlistContain.querySelectorAll('.Wishlist-item');
-  items.forEach(it => {
-    if (it.querySelector('.Wishlist-item-info h3').textContent === nombre) it.remove();
-  });
-
-  // Actualizar estado del corazón en la card
-  const hearts = document.querySelectorAll('.card-svg');
-  hearts.forEach(svg => {
-    const pn = svg.parentElement.querySelector('.product-name')?.textContent;
-    if (pn === nombre) {
-      svg.dataset.filled = 'false';
-      svg.innerHTML = svg.innerHTML.replace('fill="#7C6A0A"', 'fill="none"');
+    if (!existingProduct) {
+        wishlistItems.push({ nombre, precio, imagenSrc });
+        localStorage.setItem('wishlist', JSON.stringify(wishlistItems));
     }
-  });
 }
+
+
+
 
 // Función para agregar un producto al carrito
-function crearElementoCarrito(nombre, precio, imagenSrc) {
+export function crearElementoCarrito(nombre, precio, imagenSrc) {
   // Verificar si el producto ya está en el carrito
   const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
   const existingProduct = cartItems.find(item => item.nombre === nombre);
@@ -262,7 +135,6 @@ function crearElementoCarrito(nombre, precio, imagenSrc) {
   localStorage.setItem('cart', JSON.stringify(cartItems));
 
   // Actualizar el DOM del carrito
-  cargarItemsCarrito();
 }
 
 
@@ -283,7 +155,7 @@ if (cardSection) {
       if (!filled) {
         heart.dataset.filled = 'true';
         heart.innerHTML = heart.innerHTML.replace('fill="none"', 'fill="#7C6A0A"');
-        crearElementoWishlist(name, price, img);
+        // crearElementoWishlist(name, price, img);
         agregarAWishlistLocalStorage(name, price, img);
       } else {
         heart.dataset.filled = 'false';
@@ -303,25 +175,13 @@ if (wishlist) {
 
     if (isFilled) {
         svgPath.setAttribute('fill', 'none'); // Cambia a no relleno
-        wishlistContain.style.display = 'none'; // Oculta el contenedor
+        // wishlistContain.style.display = 'none'; // Oculta el contenedor
     } else {
         svgPath.setAttribute('fill', '#7C6A0A'); // Cambia a relleno
-        wishlistContain.style.display = 'flex'; // Muestra el contenedor
+        // wishlistContain.style.display = 'flex'; // Muestra el contenedor
     }
   });
 }
-
-// Mantener visible la wishlist mientras el ratón está encima
-if (wishlistContain) {
-  wishlistContain.addEventListener('mouseover', () => {
-    wishlistContain.style.display = 'flex';
-  });
-  wishlistContain.addEventListener('mouseout', () => {
-    wishlistContain.style.display = wishlistMap.size ? 'flex' : 'none';
-  });
-}
-
-// Mostrar/ocultar carrito al dar click en el ícono
 if (cartIcon) {
   cartIcon.addEventListener('click', () => {
     const svgPath = cartIcon.querySelector('svg path'); // Selecciona el <path> dentro del SVG
