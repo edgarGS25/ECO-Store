@@ -1,6 +1,6 @@
+import { guardarProductoSeleccionado} from './script.js';
 const wishlist = document.querySelector('.wishlist');
 const wishlistContain = document.querySelector('.wishlist-full-contain');
-
 
 
 // cargar wishlist desde localStorage al iniciar
@@ -14,11 +14,7 @@ function cargarWishList() {
       imgC.href = "product.html" || '#';
       imgC.className = 'img-container';
       imgC.addEventListener('click', () => {
-        productosCuidadoSalud.forEach(producto => {
-          if (producto.name === nombre) {
-            guardarProductoSeleccionado(producto);
-          }
-      });
+        guardarProductoSeleccionado(item.nombre);
       });
 
       const img = document.createElement('img');

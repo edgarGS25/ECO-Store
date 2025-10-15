@@ -92,17 +92,22 @@ function crearCards() {
   cardSection.appendChild(frag);
 }
 
-function guardarProductoSeleccionado(producto) {
-      const productDataNew = {
-        name: producto.name,
-        description: producto.description,
-        price: producto.price,
-        image: producto.image,
-      };
-      localStorage.setItem('selectedProduct', JSON.stringify(productDataNew));
-    }
+export function guardarProductoSeleccionado(productoNombre) {
+      productosCuidadoSalud.forEach(producto=> {
+        if (producto.name === productoNombre) {
+          const productDataNew = {
+          name: producto.name,
+          description: producto.description,
+          price: producto.price,
+          image: producto.image,
+        };
+        localStorage.setItem('selectedProduct', JSON.stringify(productDataNew));
+      }
+      
+    });
+}
 
-
+  
 // Función para agregar un producto al Local Storage
 function agregarAWishlistLocalStorage(nombre, precio, imagenSrc) {
   const wishlistItems = JSON.parse(localStorage.getItem('wishlist')) || [];
