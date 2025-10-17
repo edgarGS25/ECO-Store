@@ -18,6 +18,7 @@ async function fetchProducts() {
     const data = await res.json();
     productosCuidadoSalud = data.productsHealth || [];
     crearCards();
+    actualizarContadorCarrito();
   } catch (e) {
     console.error('Error fetching products', e);
   }
@@ -71,7 +72,7 @@ function crearCards() {
 
     // **Evento para guardar los datos del producto al hacer clic**
     imgContainer.addEventListener('click', () => {
-        guardarProductoSeleccionado(producto);
+        guardarProductoSeleccionado(producto.name);
     });
 
     // Añadir toda la información a la card
@@ -142,6 +143,13 @@ export function crearElementoCarrito(nombre, precio, imagenSrc) {
   // Actualizar el DOM del carrito
 }
 
+// Función para actualizar el contador del carrito
+export function actualizarContadorCarrito() {
+    const cartCountElement = document.querySelector('.cart-count');
+    const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const totalCount = cartItems.reduce((total, item) => total + (item.cantidad || 1), 0);
+    cartCountElement.textContent = totalCount;
+}
 
 
 

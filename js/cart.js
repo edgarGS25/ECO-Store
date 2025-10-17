@@ -9,6 +9,7 @@ const cartContain = document.querySelector(".cart-contain")
 export function cargarItemsCarrito(){
      const cartItemsLocalStorage = JSON.parse(localStorage.getItem('cart')) || []; // Obtener productos o un array vacío
 
+
      cartItemsLocalStorage.forEach(item => {
         const cartItem = document.createElement('div');
         cartItem.className = 'cart-item';

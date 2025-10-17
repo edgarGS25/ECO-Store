@@ -1,4 +1,4 @@
-import { crearElementoCarrito} from './script.js';
+import { crearElementoCarrito, actualizarContadorCarrito} from './script.js';
 
 document.addEventListener('DOMContentLoaded', () => {
                 // Recuperar los datos del producto desde localStorage
@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Evento para agregar al carrito desde la página de producto
                 addToCartButton.addEventListener('click', () => {
                     crearElementoCarrito(productData.name, Number(productData.price), productData.image);
-                    // addToCartButton.textContent = 'Ya en el carrito';
-                    // addToCartButton.disabled = true;
+                    // Actualizar el contador del carrito
+                    actualizarContadorCarrito();
                 });
 
                 // Asignar los datos al DOM
@@ -26,5 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 productName.textContent = productData.name || 'Nombre del producto';
                 productDescription.textContent = productData.description || 'Descripción del producto';
                 productPrice.textContent = `$${productData.price ? productData.price.toFixed(2) : '0.00'}`;
-                }
-            });
+    }
+});
+
+
+
+
